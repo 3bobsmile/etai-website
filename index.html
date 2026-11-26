@@ -42,6 +42,7 @@
     @media(max-width:900px){.hero{min-height:0;padding-top:76px;padding-bottom:90px}.hero h1{font-size:clamp(54px,8vw,76px)}}
     @media(max-width:650px){.hero{padding-top:58px;padding-bottom:76px}.hero h1{font-size:clamp(50px,13vw,70px)}.hero-copy{font-size:16px}.demo-wrap:before{inset:-30px -25px}.product-window{animation-duration:10s}.demo-card{animation-duration:9s}.demo-card:focus-within{transform:none}}
     @media(prefers-reduced-motion:reduce){.product-window,.demo-card,.demo-note{animation:none!important}.task-tile,.step,.feature,.button,.model-list span{transition:none!important}html.motion-ready .scroll-reveal{opacity:1;transform:none;transition:none}}
+    .hero{grid-template-columns:1fr 1fr;gap:64px;min-height:0;padding-top:95px;padding-bottom:105px}.demo-wrap{min-height:0;display:block;isolation:auto}.demo-wrap:before{display:none}.demo-card{position:relative;right:auto;bottom:auto;width:100%;max-width:430px;margin:auto;padding:24px;transform:none}.demo-note,.product-window{display:none}.problem-points{gap:0}.problem-point{font-weight:700}.steps{margin-top:40px}.step{min-height:150px;display:flex;align-items:flex-end}.step h3{font-size:19px}.feature-list{margin-top:40px}.feature{min-height:110px;display:flex;align-items:flex-end}.feature h3{font-size:15px}.audience-card:after{display:none}.beta-contact .beta-panel{max-width:760px}.beta-contact .beta-panel-head{max-width:none}@media(max-width:650px){.hero{grid-template-columns:1fr;gap:40px;padding:58px 0 76px;min-height:0}}
   </style>
 </head>
 <body>
@@ -53,64 +54,42 @@
     </nav></div>
   </header>
   <main id="home">
-    <div class="shell hero">
-      <div>
-        <div class="kicker"><span class="dot"></span> Estimated Time for AI</div>
-        <h1>A little more<br>time to <em>plan.</em></h1>
-        <p class="hero-copy">Waiting on a long response? ET.Ai gives you a rough time estimate before you send, then updates it while the answer comes in.</p>
-        <div class="actions"><a class="button button-primary" href="#contact">Email us about the beta <span aria-hidden="true">↗</span></a><a class="button button-light" href="#how">See how it works <span aria-hidden="true">↓</span></a></div>
-        <p class="fineprint">A student project about making the wait easier to plan around.</p>
-      </div>
-      <div class="demo-wrap" aria-label="Illustrative ET.Ai estimate preview">
-        <div class="product-window" aria-hidden="true">
-          <aside class="product-side"><div class="product-logo">ET<span>A</span>i</div><div class="product-nav active">▦ <span>Board</span></div><div class="product-nav">✧ <span>Features</span></div><div class="product-nav">⚙ <span>Settings</span></div><div class="product-help">Give feedback</div></aside>
-          <div class="product-board"><div class="board-head"><strong>Board</strong><span class="board-action">＋ New task</span></div><div class="board-columns"><div class="board-column"><small>TRACKING <i>2</i></small><div class="task-tile"><b>Draft website copy</b><span>Claude · writing</span><em>↗ estimating</em></div><div class="task-tile"><b>Compare API options</b><span>ChatGPT · research</span><em>~ 24 sec</em></div></div><div class="board-column"><small>IN PROGRESS <i>1</i></small><div class="task-tile selected"><b>Summarize interview notes</b><span>Claude · 63% complete</span><div class="mini-track"><span></span></div><em>~ 12 sec left</em></div></div><div class="board-column"><small>COMPLETED <i>3</i></small><div class="task-tile"><b>Outline product launch</b><span>Gemini · finished</span><em>Done · 18 sec</em></div></div></div></div>
-        </div>
-        <div class="demo-card">
-          <div class="demo-top"><span class="demo-label">Try the ETA preview</span><label class="demo-model"><span class="model-icon" id="modelIcon">C</span><select id="modelSelect" aria-label="Choose an AI model"><option value="claude">Claude</option><option value="chatgpt">ChatGPT</option><option value="gemini">Gemini</option></select></label></div>
-          <div class="prompt-label">Your prompt</div>
-          <textarea class="prompt-box" id="promptBox" aria-label="Enter a sample prompt" spellcheck="false">Write a 1,500-word report comparing three cloud providers, with a summary table.</textarea>
-          <div class="sample-prompts" aria-label="Example prompts"><button type="button" data-prompt="Give me three quick ideas for a team lunch.">Quick answer</button><button type="button" data-prompt="Write a 1,500-word report comparing three cloud providers, with a summary table.">Long report</button><button type="button" data-prompt="Build a small React component with tests and explain each part.">Coding task</button></div>
-          <div class="estimate-row"><div><div class="estimate-caption">Estimated response time</div><div class="estimate-time"><span id="eta">~22</span><small> sec</small></div></div><span class="range" id="range">15–40 sec</span></div>
-          <div class="progress-head"><span id="progressStatus" aria-live="polite">Ready to simulate</span><span id="timeLeft">~22 sec total</span></div><div class="progress"><div class="progress-fill" id="progressFill"></div></div>
-          <button type="button" class="run-demo" id="runDemo">▶ &nbsp; Run 6-second preview</button>
-          <div class="demo-foot"><span><i class="pulse"></i>Local demo · prompt stays here</span><span>Illustrative estimate</span></div>
-        </div>
-        <div class="demo-note"><strong>Before you press send.</strong></div>
+  <div class="shell hero">
+    <div>
+      <h1>Know the wait<br>before it <em>starts.</em></h1>
+      <div class="actions"><a class="button button-primary" href="#contact">Email us about the beta</a><a class="button button-light" href="#how">How it works</a></div>
+    </div>
+    <div class="demo-wrap" aria-label="Interactive response time preview">
+      <div class="demo-card">
+        <div class="demo-top"><span class="demo-label">Estimate preview</span><label class="demo-model"><select id="modelSelect" aria-label="Choose a model"><option value="claude">Claude</option><option value="chatgpt">ChatGPT</option><option value="gemini">Gemini</option></select></label></div>
+        <label class="prompt-label" for="promptBox">Your prompt</label>
+        <textarea class="prompt-box" id="promptBox" aria-label="Enter a sample prompt" spellcheck="false">Write a 1,500-word report comparing three cloud providers, with a summary table.</textarea>
+        <div class="estimate-row"><div><div class="estimate-caption">Estimated wait</div><div class="estimate-time"><span id="eta">~22</span><small> sec</small></div></div><span class="range" id="range">15–40 sec</span></div>
+        <div class="progress-head"><span id="progressStatus" aria-live="polite">Ready</span><span id="timeLeft">~22 sec total</span></div><div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+        <button type="button" class="run-demo" id="runDemo">Run preview</button>
       </div>
     </div>
-    <div class="proof"><div class="shell proof-inner"><span class="proof-label">Designed for the AI tools you already use</span><div class="model-list"><span><b class="model-symbol">✳</b> Claude</span><span><b class="model-symbol">◉</b> ChatGPT</span><span><b class="model-symbol">✦</b> Gemini</span><span>and more</span></div></div></div>
-    <section class="problem"><div class="shell problem-grid"><div><p class="section-tag">The waiting game</p><h2 class="section-title">Five seconds or five minutes?</h2><p class="section-copy">You send a prompt and the spinner starts. With no sense of the wait, it’s hard to know whether to stay put, switch tasks, or choose a faster model.</p></div><div class="problem-points"><div class="problem-point"><span class="check">✓</span>Know what kind of wait to expect</div><div class="problem-point"><span class="check">✓</span>Decide when to switch tasks</div><div class="problem-point"><span class="check">✓</span>Choose a model that fits your moment</div><div class="problem-point"><span class="check">✓</span>See the ETA move as the answer arrives</div></div></div></section>
-    <section id="how"><div class="shell"><p class="section-tag">Simple by design</p><h2 class="section-title">An ETA for every prompt.</h2><p class="section-copy">ET.Ai turns the unknown wait into a useful estimate, then learns from the real response as it comes in.</p><div class="steps">
-      <article class="step"><span class="step-num">01 / PROMPT</span><div class="step-icon" aria-hidden="true">⌕</div><h3>Tell it what you need</h3><p>From a quick question to a long report or coding task, the request gives the estimate its starting point.</p></article>
-      <article class="step"><span class="step-num">02 / PREDICT</span><div class="step-icon" aria-hidden="true">◷</div><h3>See the likely wait</h3><p>Get a time range before you send, informed by the model, likely answer length, and task complexity.</p></article>
-      <article class="step"><span class="step-num">03 / UPDATE</span><div class="step-icon" aria-hidden="true">↗</div><h3>Track it as it writes</h3><p>Once the response begins, ET.Ai uses the actual pace to refresh your time remaining.</p></article>
-    </div><div class="formula"><span>What shapes an ETA</span><b>Model speed&nbsp; · &nbsp;Answer length&nbsp; · &nbsp;Thinking time&nbsp; · &nbsp;Your history</b></div></div></section>
-    <section id="features" class="features"><div class="shell feature-layout"><div><p class="section-tag">More than a stopwatch</p><h2 class="section-title">Make the wait work for you.</h2><p class="section-copy">Useful context before you send, and a little more control over what happens next.</p><p class="note">Feature ideas shown here are part of the product direction and may change as ET.Ai develops.</p></div><div class="feature-list">
-      <article class="feature"><div class="feature-symbol">◷</div><h3>Pre-send time range</h3><p>A likely duration with a range that reflects uncertainty.</p></article>
-      <article class="feature"><div class="feature-symbol">↗</div><h3>Live time remaining</h3><p>A changing ETA based on the response as it streams.</p></article>
-      <article class="feature"><div class="feature-symbol">⚡</div><h3>Faster-model suggestions</h3><p>Spot when another model could get you an answer sooner.</p></article>
-      <article class="feature"><div class="feature-symbol">◈</div><h3>Cost context</h3><p>See an estimated cost alongside the time when available.</p></article>
-      <article class="feature"><div class="feature-symbol">⌁</div><h3>Ready notifications</h3><p>Step away and get a nudge when a long response finishes.</p></article>
-      <article class="feature"><div class="feature-symbol">▥</div><h3>Accuracy over time</h3><p>Compare estimates with real waits and see how they improve.</p></article>
-    </div></div></section>
-    <section><div class="shell audience"><div><p class="section-tag">Made for people with things to do</p><h2 class="section-title">Get back to your day while AI gets to work.</h2><p class="section-copy">Whether you’re researching, writing, studying, or building, a little visibility makes every wait easier to plan around.</p><div class="audience-tags"><span>Writers</span><span>Students</span><span>Researchers</span><span>Developers</span><span>Teams</span></div></div><div class="audience-card"><blockquote>“Should I grab a coffee, or will this be done before I stand up?”</blockquote><p>That’s the question ET.Ai is here to answer.</p></div></div></section>
-    <section class="team" id="team"><div class="shell team-line"><div><p class="section-tag">A student-built project</p><h2 class="section-title">Built at UW–Madison.</h2><p class="section-copy">ET.Ai is an early-stage project from students at the University of Wisconsin–Madison, exploring a more thoughtful way to work with AI.</p></div><div class="team-mark" aria-hidden="true">ET</div></div></section>
-    <section class="beta-contact" id="contact"><div class="shell"><div class="beta-panel"><div class="beta-panel-head"><p class="section-tag">A small beta, taking shape</p><h2 class="section-title">Email us about the beta</h2><p class="section-copy">Interested in trying ET.Ai? Leave an email and tell us a little about what you do or study. We’ll get in touch when there’s something ready to try.</p><button class="button button-primary" type="button" id="showBetaForm" aria-expanded="false" aria-controls="betaForm">Join the beta list <span aria-hidden="true">↗</span></button><p class="contact-meta">Or email us directly at <a class="beta-email" href="mailto:bob@etai.studio">bob@etai.studio</a>.</p></div><form class="beta-form" id="betaForm" action="https://formsubmit.co/bob@etai.studio" method="POST" hidden>
-<input type="hidden" name="_subject" value="New ET.Ai beta signup"><input type="hidden" name="_template" value="table">
-<div class="beta-honeypot" aria-hidden="true"><label for="betaWebsite">Leave this field blank</label><input id="betaWebsite" name="_honey" tabindex="-1" autocomplete="off"></div>
-<div class="beta-field beta-field-full"><label for="betaEmail">Email address</label><input id="betaEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
-<div class="beta-field beta-field-full"><label for="betaOccupation">What best describes your current work or studies?</label><select id="betaOccupation" name="occupation" required><option value="" selected disabled>Select one</option><option>IT / software</option><option>Student</option><option>Graduate student</option><option>Research</option><option>Design</option><option>Business / operations</option><option>Other</option></select></div>
-<p class="beta-form-note">Your email and selection will be sent through FormSubmit to bob@etai.studio for beta follow-up. FormSubmit says it retains submissions for 30 days.</p>
-<button class="button button-primary" type="submit">Send signup <span aria-hidden="true">↗</span></button><p class="beta-message" id="betaMessage" aria-live="polite"></p></form></div></div></section>
-  </main>
-  <footer class="footer"><div class="shell footer-inner"><span class="footer-brand">ET<span class="brand-blue">A</span>i</span><span>© <span id="year">2026</span> ET.Ai · Madison, Wisconsin</span><div class="footer-right"><a href="mailto:bob@etai.studio">bob@etai.studio</a><a href="#home">Back to top ↑</a></div></div></footer>
+  </div>
+  <section class="problem"><div class="shell"><h2 class="section-title">Five seconds or five minutes?</h2><div class="problem-points"><div class="problem-point">Know the likely wait</div><div class="problem-point">Decide when to switch tasks</div><div class="problem-point">Track the wait as it changes</div></div></div></section>
+  <section id="how"><div class="shell"><h2 class="section-title">An ETA for every prompt.</h2><div class="steps"><article class="step"><h3>Tell it what you need</h3></article><article class="step"><h3>See the likely wait</h3></article><article class="step"><h3>Track it as it writes</h3></article></div></div></section>
+  <section id="features" class="features"><div class="shell"><h2 class="section-title">Make the wait work for you.</h2><div class="feature-list"><article class="feature"><h3>Pre-send time range</h3></article><article class="feature"><h3>Live time remaining</h3></article><article class="feature"><h3>Faster model suggestions</h3></article><article class="feature"><h3>Cost context</h3></article><article class="feature"><h3>Ready notifications</h3></article><article class="feature"><h3>Accuracy over time</h3></article></div></div></section>
+  <section><div class="shell audience"><div><h2 class="section-title">Make room for the rest of your day.</h2></div><div class="audience-card"><blockquote>“Should I grab a coffee, or will this be done before I stand up?”</blockquote></div></div></section>
+  <section class="team" id="team"><div class="shell team-line"><div><h2 class="section-title">Built at UW–Madison.</h2></div></div></section>
+  <section class="beta-contact" id="contact"><div class="shell"><div class="beta-panel"><div class="beta-panel-head"><h2 class="section-title">Email us about the beta</h2><button class="button button-primary" type="button" id="showBetaForm" aria-expanded="false" aria-controls="betaForm">Join the beta list</button></div><form class="beta-form" id="betaForm" action="https://formsubmit.co/bob@etai.studio" method="POST" hidden>
+    <input type="hidden" name="_subject" value="New ET.Ai beta signup"><input type="hidden" name="_template" value="table">
+    <div class="beta-honeypot" aria-hidden="true"><label for="betaWebsite">Leave this field blank</label><input id="betaWebsite" name="_honey" tabindex="-1" autocomplete="off"></div>
+    <div class="beta-field beta-field-full"><label for="betaEmail">Email address</label><input id="betaEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+    <div class="beta-field beta-field-full"><label for="betaOccupation">What best describes your current work or studies?</label><select id="betaOccupation" name="occupation" required><option value="" selected disabled>Select one</option><option>IT / software</option><option>Student</option><option>Graduate student</option><option>Research</option><option>Design</option><option>Business / operations</option><option>Other</option></select></div>
+    <p class="beta-form-note">Your email and selection go through FormSubmit to bob@etai.studio. FormSubmit keeps submissions for 30 days.</p>
+    <button class="button button-primary" type="submit">Send signup</button><p class="beta-message" id="betaMessage" aria-live="polite"></p></form></div></div></section>
+</main>
+<footer class="footer"><div class="shell footer-inner"><span class="footer-brand">ET<span class="brand-blue">A</span>i</span><span>© <span id="year">2026</span> ET.Ai · Madison, Wisconsin</span><div class="footer-right"><a href="mailto:bob@etai.studio">bob@etai.studio</a><a href="#home">Back to top</a></div></div></footer>
   <script>
-    const promptBox=document.querySelector('#promptBox'),modelSelect=document.querySelector('#modelSelect'),modelIcon=document.querySelector('#modelIcon');
+    const promptBox=document.querySelector('#promptBox'),modelSelect=document.querySelector('#modelSelect');
     const eta=document.querySelector('#eta'),range=document.querySelector('#range'),timeLeft=document.querySelector('#timeLeft');
     const progressStatus=document.querySelector('#progressStatus'),progressFill=document.querySelector('#progressFill');
     const demoCard=document.querySelector('.demo-card'),runDemo=document.querySelector('#runDemo');
-    const modelSpeeds={claude:1,chatgpt:.9,gemini:.82},modelMarks={claude:'C',chatgpt:'G',gemini:'✦'};
+    const modelSpeeds={claude:1,chatgpt:.9,gemini:.82};
     function updateEstimate(){
       const prompt=promptBox.value.trim(),chars=prompt.length;
       const wordRequest=prompt.match(/(\d[\d,]*)\s*[- ]?\s*word/i);
@@ -123,9 +102,9 @@
       if(!demoCard.classList.contains('is-running'))timeLeft.textContent='~'+likely+' sec total';
       return likely;
     }
-    function resetDemo(){clearInterval(demoTimer);demoCard.classList.remove('is-running','is-complete');progressFill.style.width='0';progressStatus.textContent='Ready to simulate';runDemo.disabled=false;runDemo.textContent='▶  Run 6-second preview';}
+    function resetDemo(){clearInterval(demoTimer);demoCard.classList.remove('is-running','is-complete');progressFill.style.width='0';progressStatus.textContent='Ready to simulate';runDemo.disabled=false;runDemo.textContent='Run preview';}
     promptBox.addEventListener('input',()=>{resetDemo();updateEstimate();});
-    modelSelect.addEventListener('change',()=>{modelIcon.textContent=modelMarks[modelSelect.value];resetDemo();updateEstimate();});
+    modelSelect.addEventListener('change',()=>{resetDemo();updateEstimate();});
     document.querySelectorAll('.sample-prompts button').forEach(button=>button.addEventListener('click',()=>{promptBox.value=button.dataset.prompt;resetDemo();updateEstimate();promptBox.focus();}));
     let demoTimer;
     runDemo.addEventListener('click',()=>{
@@ -136,7 +115,7 @@
       demoTimer=setInterval(()=>{
         const elapsed=Date.now()-started,progress=Math.min(100,elapsed/duration*100),remaining=Math.max(0,Math.ceil((duration-elapsed)/1000));
         progressFill.style.width=progress+'%';timeLeft.textContent=remaining?remaining+' sec in preview':'Finishing…';
-        if(progress>=100){clearInterval(demoTimer);demoCard.classList.remove('is-running');demoCard.classList.add('is-complete');progressStatus.textContent='Preview complete';timeLeft.textContent='Estimated wait: ~'+estimated+' sec';runDemo.disabled=false;runDemo.textContent='↻  Replay preview';}
+        if(progress>=100){clearInterval(demoTimer);demoCard.classList.remove('is-running');demoCard.classList.add('is-complete');progressStatus.textContent='Preview complete';timeLeft.textContent='Estimated wait: ~'+estimated+' sec';runDemo.disabled=false;runDemo.textContent='Run again';}
       },100);
     });
     updateEstimate();
@@ -157,9 +136,6 @@
     const topbar=document.querySelector('.topbar');
     function updateScrollProgress(){const maxScroll=document.documentElement.scrollHeight-window.innerHeight;topbar.style.setProperty('--scroll-progress',maxScroll>0?String(window.scrollY/maxScroll):'0');}
     window.addEventListener('scroll',updateScrollProgress,{passive:true});updateScrollProgress();
-    const stage=document.querySelector('.demo-wrap'),productWindow=document.querySelector('.product-window');
-    stage.addEventListener('pointermove',event=>{if(reducedMotion.matches||event.pointerType==='touch')return;const rect=stage.getBoundingClientRect(),x=(event.clientX-rect.left)/rect.width,y=(event.clientY-rect.top)/rect.height;productWindow.style.setProperty('--tilt-x',((.5-y)*3).toFixed(2)+'deg');productWindow.style.setProperty('--tilt-y',((x-.5)*4).toFixed(2)+'deg');});
-    stage.addEventListener('pointerleave',()=>{productWindow.style.setProperty('--tilt-x','0deg');productWindow.style.setProperty('--tilt-y','0deg');});
   </script>
 </body>
 </html>
